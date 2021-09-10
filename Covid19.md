@@ -33,6 +33,7 @@ number of tests?**
 covid_df <- read_csv('covid19.csv')
 ```
 
+<<<<<<< HEAD
     ## Rows: 10903 Columns: 14
 
     ## ── Column specification ────────────────────────────────────────────────────────
@@ -44,17 +45,25 @@ covid_df <- read_csv('covid19.csv')
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+=======
+    ## Error: 'covid19.csv' does not exist in current working directory ('/Users/eriztolay/Desktop/R/CryptoCyp-Investigating-Covid-19-Virus-Trends').
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 ``` r
 # Determining the dimensions
 dim(covid_df)
 ```
 
+<<<<<<< HEAD
     ## [1] 10903    14
+=======
+    ## Error in eval(expr, envir, enclos): object 'covid_df' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 ``` r
 # Assign column names to a variable and display
 vector_cols <- colnames(covid_df)
+<<<<<<< HEAD
 vector_cols
 ```
 
@@ -65,12 +74,24 @@ vector_cols
     ##  [9] "death"                   "total_tested"           
     ## [11] "active"                  "hospitalizedCurr"       
     ## [13] "daily_tested"            "daily_positive"
+=======
+```
+
+    ## Error in is.data.frame(x): object 'covid_df' not found
+
+``` r
+vector_cols
+```
+
+    ## Error in eval(expr, envir, enclos): object 'vector_cols' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 ``` r
 # Display fist 5 rows
 head(covid_df)
 ```
 
+<<<<<<< HEAD
     ## # A tibble: 6 × 14
     ##   Date       Continent_Name Two_Letter_Country_Co… Country_Region Province_State
     ##   <date>     <chr>          <chr>                  <chr>          <chr>         
@@ -83,12 +104,16 @@ head(covid_df)
     ## # … with 9 more variables: positive <dbl>, hospitalized <dbl>, recovered <dbl>,
     ## #   death <dbl>, total_tested <dbl>, active <dbl>, hospitalizedCurr <dbl>,
     ## #   daily_tested <dbl>, daily_positive <dbl>
+=======
+    ## Error in head(covid_df): object 'covid_df' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 ``` r
 # Display summary of the dataset
 glimpse(covid_df)
 ```
 
+<<<<<<< HEAD
     ## Rows: 10,903
     ## Columns: 14
     ## $ Date                    <date> 2020-01-20, 2020-01-22, 2020-01-22, 2020-01-2…
@@ -105,6 +130,9 @@ glimpse(covid_df)
     ## $ hospitalizedCurr        <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
     ## $ daily_tested            <dbl> 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
     ## $ daily_positive          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+=======
+    ## Error in glimpse(covid_df): object 'covid_df' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 ## Filtering and Extracting the Data
 
@@ -123,10 +151,23 @@ covid_df_all_states <- covid_df %>%
   filter(
     Province_State == "All States"
   )
+<<<<<<< HEAD
+=======
+```
+
+    ## Error in filter(., Province_State == "All States"): object 'covid_df' not found
+
+``` r
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 # Dropping Province_State column
 covid_df <- covid_df[,-5]
 ```
 
+<<<<<<< HEAD
+=======
+    ## Error in eval(expr, envir, enclos): object 'covid_df' not found
+
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 Our analysis would be biased if we made the mistake of comparing a
 column containing cumulative data and another one containing only
 one-day data.
@@ -139,6 +180,11 @@ covid_df_all_states_daily <- covid_df_all_states %>%
   select(Date, Country_Region, active, hospitalizedCurr, daily_tested, daily_positive)
 ```
 
+<<<<<<< HEAD
+=======
+    ## Error in select(., Date, Country_Region, active, hospitalizedCurr, daily_tested, : object 'covid_df_all_states' not found
+
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 We will summarize the covid\_df\_all\_states\_daily dataframe by
 computing the overall number of tested, positive, active and
 hospitalized cases. Then, we can arrange this aggregated data by the
@@ -155,6 +201,7 @@ covid_df_all_states_daily_sum <- covid_df_all_states_daily %>%
     hospitalized = sum(hospitalizedCurr)
   ) %>%
   arrange(-tested)
+<<<<<<< HEAD
   
 covid_df_all_states_daily_sum
 ```
@@ -192,12 +239,36 @@ covid_top_10
     ##  8 Australia       1252900     7200  134586         6655
     ##  9 Peru             976790    59497       0            0
     ## 10 Poland           928256    23987  538203            0
+=======
+```
+
+    ## Error in group_by(., Country_Region): object 'covid_df_all_states_daily' not found
+
+``` r
+covid_df_all_states_daily_sum
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_df_all_states_daily_sum' not found
+
+``` r
+covid_top_10 <- head(covid_df_all_states_daily_sum,10)
+```
+
+    ## Error in head(covid_df_all_states_daily_sum, 10): object 'covid_df_all_states_daily_sum' not found
+
+``` r
+covid_top_10
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_top_10' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 Our goal now is to answer this question: **Which countries have had the
 highest number of positive cases against the number of tests?**
 
 ``` r
 countries <- covid_top_10$Country_Region
+<<<<<<< HEAD
 tested_cases<- covid_top_10$tested
 positive_cases <- covid_top_10$positive
 active_cases <- covid_top_10$active
@@ -215,6 +286,65 @@ positive_cases / tested_cases
     ##    0.108618191    0.038546552    0.061523368    0.016507300    0.080711720 
     ##         Canada United Kingdom      Australia           Peru         Poland 
     ##    0.054915490    0.113260617    0.005746668    0.060910738    0.025840932
+=======
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_top_10' not found
+
+``` r
+tested_cases<- covid_top_10$tested
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_top_10' not found
+
+``` r
+positive_cases <- covid_top_10$positive
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_top_10' not found
+
+``` r
+active_cases <- covid_top_10$active
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_top_10' not found
+
+``` r
+hospitalized_cases <- covid_top_10$hospitalized
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_top_10' not found
+
+``` r
+names(tested_cases) <- countries
+```
+
+    ## Error in eval(expr, envir, enclos): object 'countries' not found
+
+``` r
+names(positive_cases) <- countries
+```
+
+    ## Error in eval(expr, envir, enclos): object 'countries' not found
+
+``` r
+names(active_cases) <- countries
+```
+
+    ## Error in eval(expr, envir, enclos): object 'countries' not found
+
+``` r
+names(hospitalized_cases) <- countries
+```
+
+    ## Error in eval(expr, envir, enclos): object 'countries' not found
+
+``` r
+positive_cases / tested_cases
+```
+
+    ## Error in eval(expr, envir, enclos): object 'positive_cases' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
 
 ``` r
 positive_tested_top_3 <- c("United Kingdom" = 0.11, "United States" = 0.10, "Turkey" = 0.08)
@@ -260,6 +390,7 @@ datasets <- list(
   daily = covid_df_all_states_daily,
   top_10 = covid_top_10
 )
+<<<<<<< HEAD
 matrices <- list(covid_mat)
 vectors <- list(vector_cols, countries)
 data_structure_list <- list("dataframe" = datasets, "matrix" = matrices, "vector" = vectors)
@@ -271,3 +402,33 @@ covid_analysis_list[[2]]
     ##                                 0.11                                 0.10 
     ##         Positive tested cases.Turkey 
     ##                                 0.08
+=======
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_df' not found
+
+``` r
+matrices <- list(covid_mat)
+vectors <- list(vector_cols, countries)
+```
+
+    ## Error in eval(expr, envir, enclos): object 'vector_cols' not found
+
+``` r
+data_structure_list <- list("dataframe" = datasets, "matrix" = matrices, "vector" = vectors)
+```
+
+    ## Error in eval(expr, envir, enclos): object 'datasets' not found
+
+``` r
+covid_analysis_list <- list(question, answer, data_structure_list)
+```
+
+    ## Error in eval(expr, envir, enclos): object 'data_structure_list' not found
+
+``` r
+covid_analysis_list[[2]]
+```
+
+    ## Error in eval(expr, envir, enclos): object 'covid_analysis_list' not found
+>>>>>>> db50f6151cb7330373be36562ff19ab0f6537629
